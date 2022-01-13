@@ -1,7 +1,8 @@
 <template>
   <form class="form" @submit.prevent>
+    <h3>Create post</h3>
     <my-input v-model="post.title" placeholder="Title" />
-    <my-input v-model="post.description" placeholder="Description" />
+    <my-input v-model="post.body" placeholder="Description" />
     <my-button class="btn" style="align-self: flex-end; margin-top: 15px" @click="createPost">Create post</my-button>
   </form>
 </template>
@@ -12,7 +13,7 @@ export default {
     return {
       post: {
         title: '',
-        description: '',
+        body: '',
       },
     };
   },
@@ -25,7 +26,7 @@ export default {
       this.$emit('create', newPost);
       this.post = {
         title: '',
-        description: '',
+        body: '',
       };
     },
   },
