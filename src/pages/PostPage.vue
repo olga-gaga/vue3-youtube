@@ -8,7 +8,7 @@
     <my-dialog v-model:show="dialogVisible"><post-form @create="createPost" /></my-dialog>
     <post-list v-if="!isPostsLoading" :posts="sortedAndSearchedPosts" @remove="removePost" />
     <div v-else>Loading...</div>
-    <div ref="observer" class="observer"></div>
+    <div v-intersection="{ name: 'value' }" class="observer"></div>
     <!-- <div class="page-wrapper">
       <div
         v-for="pageNumber in totalPages"
@@ -83,17 +83,18 @@ export default {
     // },
   },
   mounted() {
-    const options = {
-      rootMargin: '0px',
-      threshold: 1.0,
-    };
-    const callback = ([entry]) => {
-      if (entry.isIntersecting && this.page < this.limit) {
-        this.page += 1;
-      }
-    };
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(this.$refs.observer);
+    this.page = 1;
+    // const options = {
+    //   rootMargin: '0px',
+    //   threshold: 1.0,
+    // };
+    // const callback = ([entry]) => {
+    //   if (entry.isIntersecting && this.page < this.limit) {
+    //     this.page += 1;
+    //   }
+    // };
+    // const observer = new IntersectionObserver(callback, options);
+    // observer.observe(this.$refs.observer);
   },
   computed: {
     sortedPosts() {
